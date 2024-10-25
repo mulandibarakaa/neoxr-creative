@@ -12,12 +12,12 @@ exports.run = {
       Func
    }) => {
       if (m.quoted) {
-         if (m.quoted.isBot) return client.reply(m.chat, Func.texted('bold', `🚩 Can't make the bot a premium user.`), m)
+        // if (m.quoted.isBot) return client.reply(m.chat, Func.texted('bold', `🚩 Can't make the bot a premium user.`), m)
          if (args && isNaN(args[0])) return client.reply(m.chat, Func.texted('bold', `🚩 Day must be a number.`), m)
          let days = args[0] ? parseInt(args[0]) : 30
          let jid = client.decodeJid(m.quoted.sender)
          let users = global.db.users.find(v => v.jid == jid)
-         users.limit += 1000
+         users.limit += 10000
          users.expired += users.premium ? (86400000 * days) : ((new Date() * 1) + (86400000 * days))
          client.reply(m.chat, users.premium ? Func.texted('bold', `🚩 Succesfully added ${days} days premium access for @${jid.replace(/@.+/, '')}.`) : Func.texted('bold', `🚩 Successfully added @${jid.replace(/@.+/, '')} to premium user.`), m).then(() => users.premium = true)
       } else if (m.mentionedJid.length != 0) { 
