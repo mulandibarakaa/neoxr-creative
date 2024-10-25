@@ -45,7 +45,7 @@ module.exports = async (client, ctx) => {
       if (m.chat.endsWith('broadcast') && [...new Set(client.storyJid)].includes(m.sender) && !/protocol/.test(m.mtype)) {
          await client.sendMessage('status@broadcast', {
             react: {
-               text: Func.random(['🤣', '🥹', '😂', '😋', '😎', '🤓', '🤪', '🥳', '😠', '😱', '🤔']),
+               text: Func.random(['🍃','🍂','🍁']),
                key: m.key
             }
          }, {
